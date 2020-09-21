@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { DrugView } from "./src/Components/DrugView/DrugView";
+import { DrugInteraction } from "./src/Components/DrugInteraction/DrugInteraction";
 
 var mountNode = document.getElementById("app");
-ReactDOM.render(<DrugView />, mountNode);
+ReactDOM.render(<DrugInteraction />, mountNode);
