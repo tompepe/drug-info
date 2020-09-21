@@ -20,3 +20,12 @@ sudo cypress open
 #   -w /e2e \
 #   --entrypoint '' \
 #   cypress/included:5.2.0 npx cypress open --project .
+
+docker run --rm \
+  -v $PWD:/root/e2e \
+  --workdir=/root/e2e \
+  --entrypoint="" \
+  -u node
+  cypress/included:5.2.0 \
+  /bin/bash -c 'cypress run --parallel'
+  
