@@ -39,3 +39,6 @@ packages/react-devtools-scheduling-profiler/dist
 
 .cache/
 dist/
+
+cypress/screenshots/
+cypress/videos/
