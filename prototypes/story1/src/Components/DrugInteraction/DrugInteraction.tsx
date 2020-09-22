@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAsyncEffect from "use-async-effect";
 
 export const DrugInteraction = (): JSX.Element => {
-    const [genericName, setGenericName] = useState("generic name");
+    const [genericName, setGenericName] = useState(".");
     useAsyncEffect(async () => {
       debugger;
         const interactionsResponse = await fetch("https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=88014");

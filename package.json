@@ -7,7 +7,7 @@
     "prototype": "cd prototypes/story1 && parcel index.html",
     "start": "parcel index.html",
     "cy:open": "sudo cypress open",
-    "cy:run": "docker run --rm -v $PWD:/root/e2e --workdir=/root/e2e --entrypoint=\"\" cypress/included:5.2.0 /bin/bash -c 'cypress run --browser chrome'",
+    "cy:run": "docker run --rm -v $PWD:/root/e2e --workdir=/root/e2e -e CYPRESS_baseUrl=http://host.docker.internal:1234 --entrypoint=\"\" cypress/included:5.2.0 /bin/bash -c 'cypress run --browser chrome'",
     "build": "parcel build index.html"
   },
   "author": "",
@@ -15,7 +15,6 @@
   "dependencies": {
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "cypress": "^5.2.0",
     "preact": "^10.4.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -25,6 +24,8 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "@testing-library/cypress": "^7.0.0",
+    "cypress": "^5.2.0",
     "parcel-bundler": "^1.12.4",
     "typescript": "^4.0.3"
   },
