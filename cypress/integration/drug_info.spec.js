@@ -5,8 +5,12 @@ describe('Drug info', () => {
     cy.visit('/');
   });
 
-  it('display the generic name of a drug', async () => {
+  it('display the generic name of a drug', () => {
     screen.findByText(/generic name: rizatriptan/i).as('findRizatriptan');
-    await cy.wait('findRizatriptan', {timeout: 50000, requestTimeout: 50000, responseTimeout: 50000});
+    cy.get('@findRizatriptan', {
+      timeout: 50000,
+      requestTimeout: 50000,
+      responseTimeout: 100000,
+    }).should('have.length', 1);
   });
-})
+});
