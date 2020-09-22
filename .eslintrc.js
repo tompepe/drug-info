@@ -8,20 +8,22 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: [
     'react',
+    'prettier',
     '@typescript-eslint',
     'jest',
     'testing-library',
     'jest-dom',
   ],
   extends: [
-    'plugin:react/recommended',
     'airbnb',
     'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'prettier/react',
+    'plugin:react-hooks/recommended',
+    'plugin:jest-dom/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:testing-library/recommended',
-    'plugin:jest-dom/recommended',
-    'plugin:react-hooks/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -40,6 +42,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     quotes: 0,
     'import/extensions': [
@@ -55,12 +58,19 @@ module.exports = {
     ],
     'import/no-extraneous-dependencies': [
       'error',
-      { devDependencies: ['**/*.test.ts', '**/*.test.tsx', '**/setupTests.ts', '**/unitTestUtils.js'] },
+      {
+        devDependencies: [
+          '**/*.test.ts',
+          '**/*.test.tsx',
+          '**/setupTests.ts',
+          '**/unitTestUtils.js',
+        ],
+      },
     ],
     'object-curly-newline': 0,
     'import/prefer-default-export': 0,
     'implicit-arrow-linebreak': 0,
-    'spaced-comment': ['error', 'always', { markers: ['/'] }], //Allow /// <reference types="react-scripts" />
+    'spaced-comment': ['error', 'always', { markers: ['/'] }], // Allow /// <reference types="react-scripts" />
     'no-extra-semi': 0,
     '@typescript-eslint/no-extra-semi': ['warn'],
     semi: 0,
