@@ -3,7 +3,7 @@ const screen = cy;
 describe('Drug info', () => {
   beforeEach(() => {
     cy.visit('/');
-  })
+  });
 
   it('display the generic name of a drug', async () => {
     screen.findByText(/generic name: rizatriptan/i).as('findRizatriptan');
