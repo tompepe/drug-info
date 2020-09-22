@@ -43,6 +43,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/react-in-jsx-scope': 'off',
     'react/jsx-first-prop-new-line': [1, 'multiline'],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     quotes: 0,
@@ -61,8 +62,8 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/*.test.ts',
-          '**/*.test.tsx',
+          '**/*.spec.ts',
+          '**/*.spec.tsx',
           '**/setupTests.ts',
           '**/unitTestUtils.js',
         ],
