@@ -28,13 +28,29 @@ describe('<DrugInteraction />', () => {
     await provider.finalize();
   });
   beforeEach(() => {
-    global.fetch = fetch;
+    const fakeFetch: (
+      input: RequestInfo,
+      init?: RequestInit
+    ) => Promise<Response> = async (input, init) => {
+      let input2 = input;
+      if (typeof input === 'string') {
+        input2 = input.replace(
+          'https://rxnav.nlm.nih.gov/',
+          'http://127.0.0.1:8080/'
+        );
+      }
+      console.log({input, input2});
+      return fetch(input2, init);
+    };
+    global.fetch = fakeFetch;
+    const expectedQuery = 'rxcui=88014';
     provider.addInteraction({
       state: 'x',
       uponReceiving: 'get w/ request for drug cui 88014',
       withRequest: {
         method: 'GET',
-        path: '/',
+        path: '/REST/interaction/interaction.json',
+        query: expectedQuery,
       },
       willRespondWith: {
         status: 200,

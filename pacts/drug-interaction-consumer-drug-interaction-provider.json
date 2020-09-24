@@ -11,7 +11,8 @@
       "providerState": "x",
       "request": {
         "method": "GET",
-        "path": "/"
+        "path": "/REST/interaction/interaction.json",
+        "query": "rxcui=88014"
       },
       "response": {
         "status": 200,
