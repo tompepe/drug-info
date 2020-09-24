@@ -39,7 +39,6 @@ describe('<DrugInteraction />', () => {
           'http://127.0.0.1:8080/'
         );
       }
-      console.log({input, input2});
       return fetch(input2, init);
     };
     global.fetch = fakeFetch;
