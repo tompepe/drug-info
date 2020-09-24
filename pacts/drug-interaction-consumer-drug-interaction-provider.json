@@ -1,0 +1,46 @@
+{
+  "consumer": {
+    "name": "drug-interaction-consumer"
+  },
+  "provider": {
+    "name": "drug-interaction-provider"
+  },
+  "interactions": [
+    {
+      "description": "get w/ request for drug cui 88014",
+      "providerState": "x",
+      "request": {
+        "method": "GET",
+        "path": "/"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": {
+          "interactionTypeGroup": [
+            {
+              "interactionType": [
+                {
+                  "minConceptItem": {
+                    "name": "caffeine"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
