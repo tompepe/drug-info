@@ -55,7 +55,7 @@ Scripts and processes:
 
 ## 5. Lint
 1. Much of what is in the lint rules is there by recommendations from the tech stack with a few resolutions
-2. The only opinion of my own is to allow for <h1>{ value }</h1> to go on the same line everything else is to keep the various rules from conflicting with one another.
+2. The only opinion of my own is to allow for ```<h1>{ value }</h1>``` to go on the same line everything else is to keep the various rules from conflicting with one another.
 3. Any changes or improvements here are welcome I just assume leave it alone
 4. Visual studio code should be linting automatically
 5. To run the linter ```npm lint```

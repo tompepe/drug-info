@@ -2,13 +2,12 @@
   "name": "drug-info",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "prototype": "cd prototypes/story1 && parcel index.html",
-    "start": "parcel index.html",
-    "cy:open": "sudo cypress open",
     "cy:run": "./cypress-docker-run.sh",
+    "cy:open": "sudo cypress open",
     "test": "jest",
+    "start": "parcel index.html",
     "lint": "eslint src --ext ts,tsx",
     "build": "parcel build index.html"
   },
