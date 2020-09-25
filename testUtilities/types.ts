@@ -14,8 +14,10 @@ export type Methods =
   | 'PROPPATCH'
   | 'UNLOCK';
 
-export type RouteOptions = {
+export type InteractionOptions<T> = {
   method: Methods;
-  baseUrl: string;
   path: string;
+  query?: string;
+  response: T;
+  status: number;
 };

@@ -1,23 +1,19 @@
-import { buildRequest } from '../../testUtilities/mockUrl/interactions/buildRequest';
-import { getSuccessResponse } from '../../testUtilities/mockUrl/interactions/getSuccessResponse';
-import { cypressRouteOptions } from '../../testUtilities/mockUrl/cypressRouteOptions';
+import { baseUrl } from '../../testUtilities/mockUrl/baseUrl';
+import { getSuccessResponse } from '../../testUtilities/mockUrl/interactions';
+import { cypressRouteOptions } from '../../testUtilities/cypressRouteOptions';
 
 describe('Drug info', () => {
   const genericDrugName = 'rizatriptan';
   beforeEach(() => {
     cy.server();
     cy.route(
-      cypressRouteOptions(
-        buildRequest(),
-        getSuccessResponse(genericDrugName),
-        200
-      )
+      cypressRouteOptions(baseUrl, getSuccessResponse(genericDrugName))
     ).as('getRizatriptan');
     cy.visit('/');
-    cy.wait('@getRizatriptan');
   });
 
   it('display the generic name of a drug', () => {
+    cy.wait('@getRizatriptan');
     cy.findByText(new RegExp(`generic name: ${genericDrugName}`, 'i')).as(
       'findRizatriptan'
     );

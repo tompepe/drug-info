@@ -9,6 +9,6 @@
       ]
     },
     "include": [
-      "./**/*.ts"
+      "./**/*.ts", "../testUtilities/cypressRouteOptions.ts"
     ]
 }

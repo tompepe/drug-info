@@ -1,39 +1,34 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
-import { Pact } from '@pact-foundation/pact';
-import {
-  fakeInteractionFetch,
-  pactInteraction,
-  pactOptions,
-} from '../../../testUtilities/mockUrl/getInteractions';
-import { getSuccessResponse } from "../../../testUtilities/mockUrl/interactions/getSuccessResponse";
+import { render, screen } from '@testing-library/react';
+import { baseUrl } from '../../../testUtilities/mockUrl/baseUrl';
+import { PactWrapper } from '../../../testUtilities/PactWrapper';
+import { getSuccessResponse } from '../../../testUtilities/mockUrl/interactions';
 import { DrugInteraction } from './DrugInteraction';
 
-const provider = new Pact(pactOptions());
-const name = 'caffeine';
+const fetchPact = new PactWrapper(baseUrl);
+const genericDrugName = 'caffeine';
 
 describe('<DrugInteraction />', () => {
   beforeAll(async () => {
-    await provider.setup();
+    await fetchPact.setup();
   });
   afterAll(async () => {
-    await provider.finalize();
+    await fetchPact.finalize();
   });
   beforeEach(() => {
-    global.fetch = fakeInteractionFetch();
+    // todo: verify expectedQuery
     const expectedQuery = 'rxcui=88014';
-    const expectedResponse = getSuccessResponse(name);
-    provider.addInteraction(
-      pactInteraction(expectedQuery, expectedResponse, 200)
-    );
+    const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
+    fetchPact.addInteraction(expectedResponse);
 
     render(<DrugInteraction />);
   });
-  afterEach(cleanup);
 
   it('should render a page header and labels', async () => {
     expect(
-      await screen.findByText(/generic name: caffeine/i)
+      await screen.findByText(
+        new RegExp(`generic name: ${genericDrugName}`, 'i')
+      )
     ).toBeInTheDocument();
   });
 });

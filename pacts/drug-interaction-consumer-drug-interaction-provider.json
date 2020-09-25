@@ -7,44 +7,11 @@
   },
   "interactions": [
     {
-      "description": "get w/ request for drug cui 88014",
-      "providerState": "x",
-      "request": {
-        "method": "GET",
-        "path": "/REST/interaction/interaction.json",
-        "query": "rxcui=88014"
-      },
-      "response": {
-        "status": 200,
-        "headers": {
-        },
-        "body": {
-          "interactionTypeGroup": [
-            {
-              "interactionType": [
-                {
-                  "minConceptItem": {
-                    "name": "caffeine"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "matchingRules": {
-          "$.body": {
-            "match": "type"
-          }
-        }
-      }
-    },
-    {
-      "description": "{ method: GET, query: rxcui=88014 }",
+      "description": "{ method: GET, query: undefined }",
       "providerState": "{ data-exists-matching: [object Object] }",
       "request": {
         "method": "GET",
-        "path": "/REST/interaction/interaction.json",
-        "query": "rxcui=88014"
+        "path": "/REST/interaction/interaction.json"
       },
       "response": {
         "status": 200,
