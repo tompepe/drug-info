@@ -1,26 +1,26 @@
+import { buildRequest } from '../../testUtilities/mockUrl/interactions/buildRequest';
+import { getSuccessResponse } from '../../testUtilities/mockUrl/interactions/getSuccessResponse';
+import { cypressRouteOptions } from '../../testUtilities/mockUrl/cypressRouteOptions';
+
 describe('Drug info', () => {
+  const genericDrugName = 'rizatriptan';
   beforeEach(() => {
-    const name = '2rizatriptan';
     cy.server();
-    cy.route({
-      method: 'GET',
-      url: 'https://rxnav.nlm.nih.gov/REST/interaction/interaction.json*',
-      headers: {},
-      response: {
-        interactionTypeGroup: [
-          {
-            interactionType: [{ minConceptItem: { name } }],
-          },
-        ],
-      },
-      status: 200,
-    }).as('getRizatriptan');
+    cy.route(
+      cypressRouteOptions(
+        buildRequest(),
+        getSuccessResponse(genericDrugName),
+        200
+      )
+    ).as('getRizatriptan');
     cy.visit('/');
     cy.wait('@getRizatriptan');
   });
 
   it('display the generic name of a drug', () => {
-    cy.findByText(/generic name: 2rizatriptan/i).as('findRizatriptan');
+    cy.findByText(new RegExp(`generic name: ${genericDrugName}`, 'i')).as(
+      'findRizatriptan'
+    );
     cy.get('@findRizatriptan', {
       timeout: 50000,
       requestTimeout: 50000,

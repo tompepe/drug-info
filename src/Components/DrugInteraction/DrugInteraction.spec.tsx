@@ -1,23 +1,15 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
-import path from 'path';
-import { Pact, Matchers } from '@pact-foundation/pact';
-import fetch from 'isomorphic-fetch';
+import { Pact } from '@pact-foundation/pact';
+import {
+  fakeInteractionFetch,
+  pactInteraction,
+  pactOptions,
+} from '../../../testUtilities/mockUrl/getInteractions';
+import { getSuccessResponse } from "../../../testUtilities/mockUrl/interactions/getSuccessResponse";
 import { DrugInteraction } from './DrugInteraction';
 
-const port = 8080;
-const provider = new Pact({
-  cors: true,
-  port,
-  log: path.resolve(process.cwd(), 'logs', 'pact.log'),
-  // loglevel: 'debug',
-  dir: path.resolve(process.cwd(), 'pacts'),
-  spec: 2,
-  pactfileWriteMode: 'update',
-  consumer: 'drug-interaction-consumer',
-  provider: 'drug-interaction-provider',
-  host: '127.0.0.1',
-});
+const provider = new Pact(pactOptions());
 const name = 'caffeine';
 
 describe('<DrugInteraction />', () => {
@@ -28,40 +20,12 @@ describe('<DrugInteraction />', () => {
     await provider.finalize();
   });
   beforeEach(() => {
-    const fakeFetch: (
-      input: RequestInfo,
-      init?: RequestInit
-    ) => Promise<Response> = async (input, init) => {
-      let input2 = input;
-      if (typeof input === 'string') {
-        input2 = input.replace(
-          'https://rxnav.nlm.nih.gov/',
-          'http://127.0.0.1:8080/'
-        );
-      }
-      return fetch(input2, init);
-    };
-    global.fetch = fakeFetch;
+    global.fetch = fakeInteractionFetch();
     const expectedQuery = 'rxcui=88014';
-    provider.addInteraction({
-      state: 'x',
-      uponReceiving: 'get w/ request for drug cui 88014',
-      withRequest: {
-        method: 'GET',
-        path: '/REST/interaction/interaction.json',
-        query: expectedQuery,
-      },
-      willRespondWith: {
-        status: 200,
-        body: Matchers.somethingLike({
-          interactionTypeGroup: [
-            {
-              interactionType: [{ minConceptItem: { name } }],
-            },
-          ],
-        }),
-      },
-    });
+    const expectedResponse = getSuccessResponse(name);
+    provider.addInteraction(
+      pactInteraction(expectedQuery, expectedResponse, 200)
+    );
 
     render(<DrugInteraction />);
   });

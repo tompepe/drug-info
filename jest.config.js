@@ -24,7 +24,7 @@ module.exports = {
   // coverageDirectory: undefined,
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: ['/node_modules/', '/pact/'],
+  // coveragePathIgnorePatterns: ['/node_modules/', '/pact/', '/pacts/'],
 
   // Indicates which provider should be used to instrument code for coverage
   // coverageProvider: "babel",
@@ -148,7 +148,7 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ['/node_modules/', '/cypress/'],
+  testPathIgnorePatterns: ['/node_modules/', '/cypress/', '/pact/', '/pacts/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -181,7 +181,7 @@ module.exports = {
   // verbose: undefined,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
-  // watchPathIgnorePatterns: [],
+  watchPathIgnorePatterns: ['/node_modules/', '/cypress/', '/pact/', '/pacts/'],
 
   // Whether to use watchman for file crawling
   // watchman: true,
