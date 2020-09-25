@@ -7,11 +7,12 @@
   },
   "interactions": [
     {
-      "description": "{ method: GET, query: undefined }",
+      "description": "{ method: GET, query: rxcui=88014 }",
       "providerState": "{ data-exists-matching: [object Object] }",
       "request": {
         "method": "GET",
-        "path": "/REST/interaction/interaction.json"
+        "path": "/REST/interaction/interaction.json",
+        "query": "rxcui=88014"
       },
       "response": {
         "status": 200,

@@ -9,14 +9,11 @@ const fetchPact = new PactWrapper(baseUrl);
 const genericDrugName = 'caffeine';
 
 describe('<DrugInteraction />', () => {
-  beforeAll(async () => {
-    await fetchPact.setup();
-  });
-  afterAll(async () => {
-    await fetchPact.finalize();
-  });
+  beforeAll(fetchPact.setup);
+
+  afterAll(fetchPact.finalize);
+
   beforeEach(() => {
-    // todo: verify expectedQuery
     const expectedQuery = 'rxcui=88014';
     const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
     fetchPact.addInteraction(expectedResponse);

@@ -40,7 +40,7 @@ export class PactWrapper {
     logLevel: 'fatal',
     dir: path.resolve(process.cwd(), 'pacts'),
     spec: 2,
-    pactfileWriteMode: 'update',
+    pactfileWriteMode: 'overwrite',
     consumer: 'drug-interaction-consumer',
     provider: 'drug-interaction-provider',
     host: '127.0.0.1',
