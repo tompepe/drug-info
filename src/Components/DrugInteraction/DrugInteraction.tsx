@@ -7,12 +7,12 @@ export const DrugInteraction = (): JSX.Element => {
 
   const getDrugCount = (interactionsResponse: any) => {
     return interactionsResponse.interactionTypeGroup.reduce(
-      (sum: any, next: any) => 
-          sum +
-          next.interactionType.reduce(
-            (intSum: any, intNext: any) => intSum + intNext.interactionPair.length,
-            0
-          )
+      (sum: any, next: any) =>
+        sum +
+        next.interactionType.reduce(
+          (intSum: any, intNext: any) =>
+            intSum + intNext.interactionPair.length,
+          0
         ),
       0
     );
