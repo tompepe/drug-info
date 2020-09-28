@@ -7,6 +7,7 @@
     "cy:run": "./cypress-docker-run.sh",
     "cy:open": "sudo cypress open",
     "test": "jest",
+    "watch": "jest --watch",
     "start": "parcel index.html",
     "lint": "eslint src --ext ts,tsx",
     "build": "parcel build index.html"
