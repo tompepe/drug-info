@@ -31,8 +31,14 @@ export class PactWrapper {
     interactionOptions: InteractionOptions<T>
   ): Promise<string> => {
     const pactInteraction = {
-      state: JSON.stringify({ 'data-exists-matching': interactionOptions.response }),
-      uponReceiving: JSON.stringify({ method: interactionOptions.method, query: interactionOptions.query, forTest }),
+      state: JSON.stringify({
+        'data-exists-matching': interactionOptions.response,
+      }),
+      uponReceiving: JSON.stringify({
+        method: interactionOptions.method,
+        query: interactionOptions.query,
+        forTest,
+      }),
       withRequest: {
         method: interactionOptions.method,
         path: interactionOptions.path,

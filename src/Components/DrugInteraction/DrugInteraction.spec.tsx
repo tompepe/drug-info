@@ -9,15 +9,16 @@ const fetchPact = new PactWrapper(baseUrl);
 const genericDrugName = 'caffeine';
 
 describe('<DrugInteraction />', () => {
-  let testCounter = 0;
-
   beforeEach(fetchPact.setup);
   afterEach(fetchPact.finalize);
-  
+
   it('should render the generic name returned by the API', async () => {
     const expectedQuery = `rxcui=88014`;
     const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
-    await fetchPact.addInteraction(`<DrugInteraction />`, expectedResponse);
+    await fetchPact.addInteraction(
+      expect.getState().currentTestName,
+      expectedResponse
+    );
     render(<DrugInteraction />);
 
     expect(
@@ -30,7 +31,10 @@ describe('<DrugInteraction />', () => {
   it('should render the interaction count returned by the API', async () => {
     const expectedQuery = `rxcui=88014`;
     const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
-    await fetchPact.addInteraction(`<DrugInteraction />`, expectedResponse);
+    await fetchPact.addInteraction(
+      expect.getState().currentTestName,
+      expectedResponse
+    );
     render(<DrugInteraction />);
 
     expect(
