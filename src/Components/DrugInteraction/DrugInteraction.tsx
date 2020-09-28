@@ -13,13 +13,16 @@ export const DrugInteraction = (): JSX.Element => {
     const responseGenericName =
       interactions.interactionTypeGroup[0].interactionType[0].minConceptItem
         .name;
+    const drugCountFromFirstGroup =
+      interactions.interactionTypeGroup[0].interactionType[0].interactionPair
+        .length;
     setGenericName(responseGenericName);
-    setDrugInteractions(interactions.interactionTypeGroup.length);
+    setDrugInteractions(drugCountFromFirstGroup);
   }, []);
   return (
     <>
       <h1>Generic Name: {genericName}</h1>
-      <h2>Drug Interactions: {drugInteractions}</h2>
+      <h2>Interaction Count: {drugInteractions}</h2>
     </>
   );
 };
