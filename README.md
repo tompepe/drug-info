@@ -27,7 +27,7 @@ Scripts and processes:
 
 ## 3 and 8 Cypress
 1. To run cypress you will need docker
-2. run ```npm run cy:run```
+2. Run ```npm run cy:run```
 3. Cypress tests optionally mock out the server for certain tests mocking the server is done by default
 4. To run cypress tests against the prod server (https://rxnav.nlm.nih.gov) run the following command ```CYPRESS_USE_PROD_URL=true npm run cy:run```
 5. Cypress runs against chrome since (so I've heard) chrome runs cypress scripts fastest 
@@ -48,16 +48,26 @@ Scripts and processes:
 2. The project has 2 tsconfig files to separate these contexts
 3. Cypress also uses webpack and this project uses parcel
 4. It's best to limit any reuse between cypress code and any other code to a minimum
-5. ```testUtilities/mockUrl/*``` files are shared by Cypress and Jest tests.  This can be done since they only rely on types defined in this codebase.
+5. ```testUtilities/mockUrl/*``` files are shared by Cypress and Jest tests.  This can be done since they only rely on types defined in this codebase and not cypress or pact libraries.
 
 ## 4. Test drive with jest
-1. run the tests ```npm test```
-2. run with watch ```npm test -- --watch```
-3. jest uses testing-library
+1. Run the tests ```npm test```
+2. Run with watch ```npm test -- --watch```
+3. Jest uses testing-library
+4. The integration tests use [PACT](https://docs.pact.io/) to mock the API
+
+### PACT
+1. [PACT](https://docs.pact.io/) mocks the API and saves a pact.json file
+2. The pact file can be used in conjunction with other pact tools to 
+    1. Test that the API complies with the tests 
+    2. To stand up a simple fake server 
+3. In the future 
+    1. It would be nice to have a mock server for when the API is not available - pact can do this
+    2. It would be nice to have a mock server to run scenarios that are difficult to setup and tear down - pact can do this but it's somewhat advanced
+    2. It would be nice to have tests that verify that the API is compliant with the mocks setup in jest 
 
 ## 5. Run the app in dev mode
-1. run the app in dev mode ```npm start```
-
+1. Run the app in dev mode ```npm start```
 
 ## 6. Lint
 1. Much of what is in the lint rules is there by recommendations from the tech stack with a few resolutions
