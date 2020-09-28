@@ -110,6 +110,36 @@ export const getSuccessResponse = (
                 severity: 'high',
                 description: 'Triptans - monoamine oxidase (MAO) inhibitors',
               },
+              // duplicate??
+              {
+                interactionConcept: [
+                  {
+                    minConceptItem: {
+                      rxcui: "88014",
+                      name: "rizatriptan",
+                      tty: "IN"
+                    },
+                    sourceConceptItem: {
+                      name: "Rizatriptan",
+                      url: "http://www.drugbank.ca/drugs/DB00953#interactions"
+                    }
+                  },
+                  {
+                    minConceptItem: {
+                      rxcui: "8123",
+                      name: "phenelzine",
+                      tty: "IN"
+                    },
+                    sourceConceptItem: {
+                      id: "DB00780",
+                      name: "Phenelzine",
+                      url: "http://www.drugbank.ca/drugs/DB00780#interactions"
+                    }
+                  }
+                ],
+                severity: "N/A",
+                description: "The metabolism of Rizatriptan can be decreased when combined with Phenelzine."
+              },
             ],
           },
         ],
@@ -117,104 +147,124 @@ export const getSuccessResponse = (
       {
         interactionType: [
           {
-            minConceptItem: { name },
-            interactionPair: [
-              {
-                interactionConcept: [
-                  {
-                    minConceptItem: {
-                      rxcui: '384455',
-                      name: 'tigecycline',
-                      tty: 'IN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB00560',
-                      name: 'Tigecycline',
-                      url: 'http://www.drugbank.ca/drugs/DB00560#interactions',
-                    },
+          interactionPair: [
+            {
+              interactionConcept: [
+                {
+                  minConceptItem: {
+                    rxcui: "88014",
+                    name: "rizatriptan",
+                    tty: "IN"
                   },
-                  {
-                    minConceptItem: {
-                      rxcui: '1344',
-                      name: 'BCG Vaccine',
-                      tty: 'IN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB12768',
-                      name: 'BCG vaccine',
-                      url: 'http://www.drugbank.ca/drugs/DB12768#interactions',
-                    },
+                  sourceConceptItem: {
+                    id: "DB00953",
+                    name: "Rizatriptan",
+                    url: "http://www.drugbank.ca/drugs/DB00953#interactions"
+                  }
+                },
+                {
+                  minConceptItem: {
+                    rxcui: "42375",
+                    name: "leuprolide",
+                    tty: "IN"
                   },
-                ],
-                severity: 'N/A',
-                description:
-                  'The therapeutic efficacy of BCG vaccine can be decreased when used in combination with Tigecycline.',
-              },
-              {
-                interactionConcept: [
-                  {
-                    minConceptItem: {
-                      rxcui: '384455',
-                      name: 'tigecycline',
-                      tty: 'IN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB00560,APRD01307',
-                      name: 'Tigecycline',
-                      url: 'http://www.drugbank.ca/drugs/DB00560#interactions',
-                    },
+                  sourceConceptItem: {
+                    id: "DB00007",
+                    name: "Leuprolide",
+                    url: "http://www.drugbank.ca/drugs/DB00007#interactions"
+                  }
+                }
+              ],
+              severity: "N/A",
+              description: "Leuprolide may decrease the excretion rate of Rizatriptan which could result in a higher serum level."
+            },
+            {
+              interactionConcept: [{
+                minConceptItem: {
+                  rxcui: "88014",
+                  name: "rizatriptan",
+                  tty: "IN"
+                }, "sourceConceptItem": {
+                  name: "Rizatriptan",
+                  url: "http://www.drugbank.ca/drugs/DB00953#interactions"
+                }
+              }, {
+                minConceptItem: {
+                  rxcui: "8702",
+                  name: "procarbazine",
+                  tty: "IN"
+                }, "sourceConceptItem": {
+                  id: "DB01168",
+                  name: "Procarbazine",
+                  url: "http://www.drugbank.ca/drugs/DB01168#interactions"
+                }
+              }],
+              severity: "N/A",
+              description: "The metabolism of Rizatriptan can be decreased when combined with Procarbazine."
+            },
+            // duplicate??
+            {
+              interactionConcept: [
+                {
+                  minConceptItem: {
+                    rxcui: "88014",
+                    name: "rizatriptan",
+                    tty: "IN"
                   },
-                  {
-                    minConceptItem: {
-                      rxcui: '1546457',
-                      name: 'Picosulfuric Acid',
-                      tty: 'PIN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB09268',
-                      name: 'Picosulfuric acid',
-                      url: 'http://www.drugbank.ca/drugs/DB09268#interactions',
-                    },
+                  sourceConceptItem: {
+                    name: "Rizatriptan",
+                    url: "http://www.drugbank.ca/drugs/DB00953#interactions"
+                  }
+                },
+                {
+                  minConceptItem: {
+                    rxcui: "30121",
+                    name: "moclobemide",
+                    tty: "IN"
                   },
-                ],
-                severity: 'N/A',
-                description:
-                  'The therapeutic efficacy of Picosulfuric acid can be decreased when used in combination with Tigecycline.',
-              },
-              {
-                interactionConcept: [
-                  {
-                    minConceptItem: {
-                      rxcui: '384455',
-                      name: 'tigecycline',
-                      tty: 'IN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB00560,APRD01307',
-                      name: 'Tigecycline',
-                      url: 'http://www.drugbank.ca/drugs/DB00560#interactions',
-                    },
-                  },
-                  {
-                    minConceptItem: {
-                      rxcui: '11289',
-                      name: 'Warfarin',
-                      tty: 'IN',
-                    },
-                    sourceConceptItem: {
-                      id: 'DB00682,APRD00341',
-                      name: 'Warfarin',
-                      url: 'http://www.drugbank.ca/drugs/DB00682#interactions',
-                    },
-                  },
-                ],
-                severity: 'N/A',
-                description:
-                  'The serum concentration of Warfarin can be increased when it is combined with Tigecycline.',
-              },
-            ],
-          },
-        ],
+                  sourceConceptItem: {
+                    id: "DB01171",
+                    name: "Moclobemide",
+                    url: "http://www.drugbank.ca/drugs/DB01171#interactions"
+                  }
+                }
+              ],
+              severity: "N/A",
+              description: "The metabolism of Rizatriptan can be decreased when combined with Moclobemide."
+            },
+            // duplicate??
+            // {
+            //   "interactionConcept": [
+            //     {
+            //       "minConceptItem": {
+            //         "rxcui": "88014",
+            //         "name": "rizatriptan",
+            //         "tty": "IN"
+            //       },
+            //       "sourceConceptItem": {
+            //         "name": "Rizatriptan",
+            //         "url": "http://www.drugbank.ca/drugs/DB00953#interactions"
+            //       }
+            //     },
+            //     {
+            //       "minConceptItem": {
+            //         "rxcui": "6011",
+            //         "name": "isocarboxazid",
+            //         "tty": "IN"
+            //       },
+            //       "sourceConceptItem": {
+            //         "id": "DB01247",
+            //         "name": "Isocarboxazid",
+            //         "url": "http://www.drugbank.ca/drugs/DB01247#interactions"
+            //       }
+            //     }
+            //   ],
+            //   "severity": "N/A",
+            //   "description": "The metabolism of Rizatriptan can be decreased when combined with Isocarboxazid."
+            // },
+            ]
+          }
+        ]
       },
     ],
   },

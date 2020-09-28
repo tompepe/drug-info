@@ -33,7 +33,7 @@ describe('<DrugInteraction />', () => {
 
   it('should render the interaction count returned by the API', async () => {
     expect(
-      await screen.findByText(new RegExp('interaction count: 6', 'i'))
+      await screen.findByText(new RegExp('interaction count: 5', 'i'))
     ).toBeInTheDocument();
   });
 });
