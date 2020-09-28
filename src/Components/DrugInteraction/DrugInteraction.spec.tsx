@@ -34,7 +34,7 @@ describe('<DrugInteraction />', () => {
     render(<DrugInteraction />);
 
     expect(
-      await screen.findByText(new RegExp('interaction count: 7', 'i'))
+      await screen.findByText(new RegExp('interaction count: 5', 'i'))
     ).toBeInTheDocument();
   });
 });
