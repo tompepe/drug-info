@@ -22,7 +22,7 @@ export const DrugInteraction = (): JSX.Element => {
   return (
     <>
       <h1>Generic Name: {genericName}</h1>
-      <h2>Drug Interactions: {drugInteractions}</h2>
+      <h2>Interaction Count: {drugInteractions}</h2>
     </>
   );
 };
