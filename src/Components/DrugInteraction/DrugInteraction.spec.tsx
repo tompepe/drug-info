@@ -13,10 +13,10 @@ describe('<DrugInteraction />', () => {
 
   afterAll(fetchPact.finalize);
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const expectedQuery = 'rxcui=88014';
     const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
-    fetchPact.addInteraction(expectedResponse);
+    await fetchPact.addInteraction(expectedResponse);
 
     render(<DrugInteraction />);
   });
@@ -28,8 +28,8 @@ describe('<DrugInteraction />', () => {
       )
     ).toBeInTheDocument();
 
-    // expect(
-    //   await screen.findByText(new RegExp('interaction count: 3', 'i'))
-    // ).toBeInTheDocument();
+    expect(
+      await screen.findByText(new RegExp('interaction count: 3', 'i'))
+    ).toBeInTheDocument();
   });
 });
