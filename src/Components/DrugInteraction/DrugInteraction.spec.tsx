@@ -21,7 +21,7 @@ describe('<DrugInteraction />', () => {
     render(<DrugInteraction />);
   });
 
-  it('should render a page header and labels', async () => {
+  it('should render the generic name returned by the API', async () => {
     expect(
       await screen.findByText(
         new RegExp(`generic name: ${genericDrugName}`, 'i')
