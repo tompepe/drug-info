@@ -11,7 +11,12 @@ export const getSuccessResponse = (
   response: {
     interactionTypeGroup: [
       {
-        interactionType: [{ minConceptItem: { name } }],
+        interactionType: [
+          {
+            minConceptItem: { name },
+            // interactionPair: [{}, {}, {}],
+          },
+        ],
       },
     ],
   },

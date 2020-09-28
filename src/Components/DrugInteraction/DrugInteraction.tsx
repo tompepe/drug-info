@@ -13,6 +13,9 @@ export const DrugInteraction = (): JSX.Element => {
     const responseGenericName =
       interactions.interactionTypeGroup[0].interactionType[0].minConceptItem
         .name;
+    // const drugCountFromFirstGroup =
+    //   interactions.interactionTypeGroup[0].interactionType[0].interactionPair
+    //     .length;
     setGenericName(responseGenericName);
     setDrugInteractions(interactions.interactionTypeGroup.length);
   }, []);

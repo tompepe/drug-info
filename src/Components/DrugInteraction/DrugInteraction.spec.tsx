@@ -27,5 +27,9 @@ describe('<DrugInteraction />', () => {
         new RegExp(`generic name: ${genericDrugName}`, 'i')
       )
     ).toBeInTheDocument();
+
+    // expect(
+    //   await screen.findByText(new RegExp('interaction count: 3', 'i'))
+    // ).toBeInTheDocument();
   });
 });
