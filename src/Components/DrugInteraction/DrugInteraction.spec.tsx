@@ -9,21 +9,17 @@ const fetchPact = new PactWrapper(baseUrl);
 const genericDrugName = 'caffeine';
 
 describe('<DrugInteraction />', () => {
-  beforeAll(async () => {
-    await fetchPact.setup();
+  let testCounter = 0;
 
-    const expectedQuery = 'rxcui=88014';
-    const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
-    await fetchPact.addInteraction(expectedResponse);
-  });
-
-  afterAll(fetchPact.finalize);
-
-  beforeEach(async () => {
-    render(<DrugInteraction />);
-  });
-
+  beforeEach(fetchPact.setup);
+  afterEach(fetchPact.finalize);
+  
   it('should render the generic name returned by the API', async () => {
+    const expectedQuery = `rxcui=88014`;
+    const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
+    await fetchPact.addInteraction(`<DrugInteraction />`, expectedResponse);
+    render(<DrugInteraction />);
+
     expect(
       await screen.findByText(
         new RegExp(`generic name: ${genericDrugName}`, 'i')
@@ -32,8 +28,13 @@ describe('<DrugInteraction />', () => {
   });
 
   it('should render the interaction count returned by the API', async () => {
+    const expectedQuery = `rxcui=88014`;
+    const expectedResponse = getSuccessResponse(genericDrugName, expectedQuery);
+    await fetchPact.addInteraction(`<DrugInteraction />`, expectedResponse);
+    render(<DrugInteraction />);
+
     expect(
-      await screen.findByText(new RegExp('interaction count: 5', 'i'))
+      await screen.findByText(new RegExp('interaction count: 7', 'i'))
     ).toBeInTheDocument();
   });
 });

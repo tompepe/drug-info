@@ -27,33 +27,12 @@ export class PactWrapper {
   };
 
   addInteraction = <T>(
+    forTest: string,
     interactionOptions: InteractionOptions<T>
   ): Promise<string> => {
-    return this.pact.addInteraction(this.pactInteraction(interactionOptions));
-  };
-
-  private pactOptions: PactOptions = {
-    cors: true,
-    // todo: get any available port
-    port: 8082,
-    log: path.resolve(process.cwd(), 'logs', 'pact.log'),
-    logLevel: 'fatal',
-    dir: path.resolve(process.cwd(), 'pacts'),
-    spec: 2,
-    pactfileWriteMode: 'overwrite',
-    consumer: 'drug-interaction-consumer',
-    provider: 'drug-interaction-provider',
-    host: '127.0.0.1',
-  };
-
-  private pact: Pact = new Pact(this.pactOptions);
-
-  private pactInteraction = <T>(
-    interactionOptions: InteractionOptions<T>
-  ): InteractionObject => {
-    return {
-      state: `{ data-exists-matching: ${interactionOptions.response} }`,
-      uponReceiving: `{ method: ${interactionOptions.method}, query: ${interactionOptions.query} }`,
+    const pactInteraction = {
+      state: JSON.stringify({ 'data-exists-matching': interactionOptions.response }),
+      uponReceiving: JSON.stringify({ method: interactionOptions.method, query: interactionOptions.query, forTest }),
       withRequest: {
         method: interactionOptions.method,
         path: interactionOptions.path,
@@ -64,7 +43,25 @@ export class PactWrapper {
         body: Matchers.somethingLike(interactionOptions.response),
       },
     };
+
+    return this.pact.addInteraction(pactInteraction);
   };
+
+  private pactOptions: PactOptions = {
+    cors: true,
+    // todo: get any available port
+    port: 8082,
+    log: path.resolve(process.cwd(), 'logs', 'pact.log'),
+    logLevel: 'fatal',
+    dir: path.resolve(process.cwd(), 'pacts'),
+    spec: 2,
+    pactfileWriteMode: 'update',
+    consumer: 'drug-interaction-consumer',
+    provider: 'drug-interaction-provider',
+    host: '127.0.0.1',
+  };
+
+  private pact: Pact = new Pact(this.pactOptions);
 
   private fetch: (
     input: RequestInfo,
