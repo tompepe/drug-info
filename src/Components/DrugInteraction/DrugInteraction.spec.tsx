@@ -19,7 +19,7 @@ describe('<DrugInteraction />', () => {
       expect.getState().currentTestName,
       expectedResponse
     );
-    render(<DrugInteraction />);
+    await render(<DrugInteraction />);
 
     expect(
       await screen.findByText(

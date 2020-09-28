@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import fetch from 'isomorphic-fetch';
-import { InteractionObject, Matchers, Pact } from '@pact-foundation/pact';
+import { Matchers, Pact } from '@pact-foundation/pact';
 import {
   PactOptions,
   PactOptionsComplete,
@@ -56,7 +56,7 @@ export class PactWrapper {
   private pactOptions: PactOptions = {
     cors: true,
     // todo: get any available port
-    port: 8082,
+    port: 8089,
     log: path.resolve(process.cwd(), 'logs', 'pact.log'),
     logLevel: 'fatal',
     dir: path.resolve(process.cwd(), 'pacts'),
