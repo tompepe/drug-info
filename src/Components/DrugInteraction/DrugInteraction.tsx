@@ -5,6 +5,19 @@ export const DrugInteraction = (): JSX.Element => {
   const [genericName, setGenericName] = useState('.');
   const [drugInteractions, setDrugInteractions] = useState(0);
 
+  const getDrugCount = (interactionsResponse: any) => {
+    return interactionsResponse.interactionTypeGroup.reduce(
+      (sum: any, next: any) => 
+          sum +
+          next.interactionType.reduce(
+            (intSum: any, intNext: any) => intSum + intNext.interactionPair.length,
+            0
+          )
+        ),
+      0
+    );
+  };
+
   useAsyncEffect(async () => {
     const interactionsResponse = await fetch(
       'https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=88014'
@@ -13,11 +26,8 @@ export const DrugInteraction = (): JSX.Element => {
     const responseGenericName =
       interactions.interactionTypeGroup[0].interactionType[0].minConceptItem
         .name;
-    const drugCountFromFirstGroup =
-      interactions.interactionTypeGroup[0].interactionType[0].interactionPair
-        .length;
     setGenericName(responseGenericName);
-    setDrugInteractions(drugCountFromFirstGroup);
+    setDrugInteractions(getDrugCount(interactions));
   }, []);
   return (
     <>

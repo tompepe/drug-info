@@ -30,6 +30,30 @@
                     {
                     },
                     {
+                    }
+                  ]
+                },
+                {
+                  "minConceptItem": {
+                    "name": "caffeine"
+                  },
+                  "interactionPair": [
+                    {
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "interactionType": [
+                {
+                  "minConceptItem": {
+                    "name": "caffeine"
+                  },
+                  "interactionPair": [
+                    {
+                    },
+                    {
                     },
                     {
                     }
