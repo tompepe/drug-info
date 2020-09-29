@@ -41,26 +41,18 @@ export const DrugInteraction = (): JSX.Element => {
     const interactionDrugDrugCuis = interactionPairs.map((x) =>
       x.map((y) => y.minConceptItem.rxcui)
     );
+
     const interactionDrugCuis = new Set(
       interactionDrugDrugCuis.map((x) =>
         JSON.stringify(x.filter((y) => y !== rxcui))
       )
     );
+
     const distinctInteractionDrugCuis = Array.from(
       interactionDrugCuis
     ).map((x) => JSON.parse(x));
 
     return distinctInteractionDrugCuis.length;
-    return interactionsResponse.interactionTypeGroup.reduce(
-      (sum: any, next: any) =>
-        sum +
-        next.interactionType.reduce(
-          (intSum: any, intNext: any) =>
-            intSum + intNext.interactionPair.length,
-          0
-        ),
-      0
-    );
   };
 
   useAsyncEffect(async () => {
