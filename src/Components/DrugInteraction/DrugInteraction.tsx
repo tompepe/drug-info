@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useAsyncEffect from 'use-async-effect';
+import { InteractionDetails } from '../InteractionDetails/InteractionDetails';
 
 interface InteractionResponse {
   interactionTypeGroup: Array<{
@@ -14,13 +15,48 @@ interface InteractionResponse {
 interface InteractionConceptItem {
   minConceptItem: {
     rxcui: string;
+    name: string;
   };
+}
+
+interface Interaction {
+  minConceptItem: {
+    rxcui: string;
+    name: string;
+  };
+  interactionPair: any[];
+}
+
+interface InteractionPair {
+  severity: string;
+  description: string;
+  interactionConcept: InteractionConceptItem[];
+}
+
+interface InteractionDetailsType {
+  severity: string;
+  description: string;
+  name: string;
 }
 
 export const DrugInteraction = (): JSX.Element => {
   const rxcui = '88014';
-  const [genericName, setGenericName] = useState();
+  const [genericName, setGenericName] = useState('');
   const [drugInteractions, setDrugInteractions] = useState(0);
+  const [interactionDetails, setInteractionDetails] = useState<InteractionDetailsType[]>([]);
+
+  const getInteractionDetails = (
+    interactionPairs: InteractionPair[],
+    primaryRxcui: string
+  ) => {
+    return interactionPairs.map((pair) => ({
+      severity: pair.severity,
+      description: pair.description,
+      name: pair.interactionConcept.filter(
+        (ic) => ic.minConceptItem.rxcui !== primaryRxcui
+      )[0].minConceptItem.name,
+    }));
+  };
 
   const getDrugCount = (interactionsResponse: InteractionResponse) => {
     // todo: cleanup really ugly
@@ -60,16 +96,28 @@ export const DrugInteraction = (): JSX.Element => {
       `https://rxnav.nlm.nih.gov/REST/interaction/interaction.json?rxcui=${rxcui}`
     );
     const interactions = await interactionsResponse.json();
-    const responseGenericName =
-      interactions.interactionTypeGroup[0].interactionType[0].minConceptItem
-        .name;
-    setGenericName(responseGenericName);
+    const {
+      minConceptItem,
+      interactionPair,
+    } = interactions.interactionTypeGroup[0].interactionType[0];
+
+    const details = getInteractionDetails(interactionPair, rxcui);
+    setInteractionDetails(details);
+    setGenericName(minConceptItem.name);
     setDrugInteractions(getDrugCount(interactions));
   }, []);
   return (
     <>
       <h1>Generic Name: {genericName}</h1>
       <h2>Interaction Count: {drugInteractions}</h2>
+      {interactionDetails.map((details) => 
+        <InteractionDetails
+          key={details.name}
+          name={details.name}
+          description={details.description}
+          severity={details.severity}
+        />
+      )}
     </>
   );
 };
