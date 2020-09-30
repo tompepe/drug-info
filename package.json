@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prototype": "cd prototypes/story1 && parcel index.html",
+    "prototype": "cd prototypes/story2 && parcel index.html",
     "cy:run": "./cypress-docker-run.sh",
     "cy:open": "sudo cypress open",
     "test": "jest",
