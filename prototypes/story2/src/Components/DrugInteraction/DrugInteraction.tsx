@@ -6,7 +6,7 @@ const RenderValue: FC<{ value: any }> = (value: any) => {
   const interactionTypeGroup = value?.interactionTypeGroup ?? [{}];
   const interactionType = interactionTypeGroup[0].interactionType ?? [{}];
   const { name } = interactionType[0]?.minConceptItem ?? {};
-  const rxcui = '88014';
+  const { rxcui } = interactionType[0]?.minConceptItem ?? {};
 
   return (
     // todo: mapper smartly iterates over lists and dedupes
