@@ -4,6 +4,7 @@ import { DrugInteraction } from './src/Components/DrugInteraction/DrugInteractio
 import InteractionsGetProvider from './src/Components/FetchProviders/InteractionsGet';
 
 const mountNode = document.getElementById('app');
+// todo: provide url and or query args up to provider
 ReactDOM.render(
   <InteractionsGetProvider>
     <DrugInteraction />

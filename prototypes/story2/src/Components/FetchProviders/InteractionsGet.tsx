@@ -13,6 +13,8 @@ export const ConsumeInteractions: React.FC<{ mapper: React.FC<any> }> = ({
     </InteractionsGetConsumer>
   );
 };
+
+// todo: get rxcui and [possibly the whole URL from properties]
 export const InteractionsGetProvider: React.FC = (props = {}) => {
   const rxcui = '88014';
   const { children } = props ?? {};
