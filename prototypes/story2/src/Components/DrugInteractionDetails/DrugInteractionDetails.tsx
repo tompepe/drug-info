@@ -46,6 +46,7 @@ export const DrugInteractionDetails: FC<{
               <li>source: {interactionTypeGroup[interactionTypeGroupIndex]?.sourceName}</li>
               <li>drug: {minConceptItem.name}</li>
               <li>desc: {interactionPair[interactionPairIndex]?.description}</li>
+              <li>severity: {interactionPair[interactionPairIndex]?.severity}</li>
             </ul>
           )
         )}

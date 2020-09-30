@@ -1,3 +1,4 @@
+// todo: update IndexMap to include if item was deduped and where to get a second description
 export interface IndexMap {
   interactionTypeGroupIndex: number;
   interactionTypeIndex: number;
@@ -6,6 +7,7 @@ export interface IndexMap {
 }
 
 // todo: replace anys with types
+// todo: mapper dedupes
 export default (interactionList: any): IndexMap[] => {
   const indexMapList: IndexMap[] = [];
   let key = 0;
