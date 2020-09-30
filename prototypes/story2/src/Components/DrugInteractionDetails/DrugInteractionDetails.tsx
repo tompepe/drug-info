@@ -42,7 +42,11 @@ export const DrugInteractionDetails: FC<{
           minConceptItem.rxcui === filterOutRxcui ? (
             <></>
           ) : (
-            <div key={minConceptItem.rxcui}>{minConceptItem.name}</div>
+            <ul key={minConceptItem.rxcui}>
+              <li>source: {interactionTypeGroup[interactionTypeGroupIndex]?.sourceName}</li>
+              <li>drug: {minConceptItem.name}</li>
+              <li>desc: {interactionPair[interactionPairIndex]?.description}</li>
+            </ul>
           )
         )}
       </>
