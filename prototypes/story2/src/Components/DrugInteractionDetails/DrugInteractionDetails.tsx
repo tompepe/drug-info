@@ -3,20 +3,18 @@ import { ConsumeInteractions } from '../FetchProviders/InteractionsGet';
 
 export const DrugInteractionDetails: FC<{
   filterOutRxcui: string;
-  indexMapper: () => {
+  indexMap: {
     interactionTypeGroupIndex: number;
     interactionTypeIndex: number;
     interactionPairIndex: number;
   };
-}> = ({ filterOutRxcui, indexMapper }) => {
+}> = ({ filterOutRxcui, indexMap }) => {
   const DrugInteractionDetailsValue: FC<{ value: any }> = (value: any) => {
-    // todo: utility tells component if item was deduped and where to get the other description
-
     const {
       interactionTypeGroupIndex,
       interactionTypeIndex,
       interactionPairIndex,
-    } = indexMapper();
+    } = indexMap;
 
     const interactionTypeGroup = value?.interactionTypeGroup;
     if (!interactionTypeGroup) {
