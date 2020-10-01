@@ -2,6 +2,7 @@ import React, { useState, createContext } from 'react';
 import useAsyncEffect from 'use-async-effect';
 
 // todo: consider generic type that gets rxcui and [possibly the whole URL from properties]
+// todo: consider adding reset to chldren elements 
 const InteractionsGetContext = createContext({} as any);
 export const InteractionsGetConsumer = InteractionsGetContext.Consumer;
 export const ConsumeInteractions: React.FC<{ mapper: React.FC<any> }> = ({

@@ -1,13 +1,14 @@
-// todo: update IndexMap to include if item was deduped and where to get a second description
+/* eslint-disable prettier/prettier */
+// todo: change duplicated property into a list of duplicates
 export interface IndexMap {
   interactionTypeGroupIndex: number;
   interactionTypeIndex: number;
   interactionPairIndex: number;
+  duplicated?: IndexMap; 
   key: number;
 }
 
 // todo: replace anys with types
-// todo: mapper dedupes
 export default (interactionList: any): IndexMap[] => {
   const indexMapList: IndexMap[] = [];
   let key = 0;
@@ -19,15 +20,47 @@ export default (interactionList: any): IndexMap[] => {
         (interactionTypeItem: any, interactionTypeIndex: number) => {
           const interactionPair = interactionTypeItem?.interactionPair ?? [];
 
-          interactionPair.forEach((_: any, interactionPairIndex: number) => {
-            key += 1;
-            indexMapList.push({
-              interactionTypeGroupIndex,
-              interactionTypeIndex,
-              interactionPairIndex,
-              key,
-            });
-          });
+          interactionPair.forEach(
+            (interactionPairItem: any, interactionPairIndex: number) => {
+              key += 1;
+
+              // dedupe
+              const rxcuis = interactionPairItem.interactionConcept
+                .map(({ minConceptItem }: any) => minConceptItem.rxcui)
+                .sort()
+                .join();
+              const duplicates = indexMapList.filter(
+                (x) =>
+                  rxcuis ===
+                  interactionList.interactionTypeGroup[
+                    x.interactionTypeGroupIndex
+                  ].interactionType[
+                    x.interactionTypeIndex
+                  ].interactionPair[
+                    x.interactionPairIndex
+                  ].interactionConcept
+                    .map(({ minConceptItem }: any) => minConceptItem.rxcui)
+                    .sort()
+                    .join()
+              );
+
+              const indexMap: IndexMap = {
+                interactionTypeGroupIndex,
+                interactionTypeIndex,
+                interactionPairIndex,
+                key,
+              };
+
+              if (duplicates.length) {
+                duplicates.forEach((d) => {
+                  // eslint-disable-next-line no-param-reassign
+                  d.duplicated = indexMap;
+                });
+              } else {
+                indexMapList.push(indexMap);
+              }
+            }
+          );
         }
       );
     }

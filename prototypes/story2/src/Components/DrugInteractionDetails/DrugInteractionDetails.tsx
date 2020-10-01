@@ -1,37 +1,28 @@
 import React, { FC } from 'react';
+import { IndexMap } from '../../Utils/indexMapper';
 import { ConsumeInteractions } from '../FetchProviders/InteractionsGet';
 
 export const DrugInteractionDetails: FC<{
   filterOutRxcui: string;
-  indexMap: {
-    interactionTypeGroupIndex: number;
-    interactionTypeIndex: number;
-    interactionPairIndex: number;
-  };
+  indexMap: IndexMap;
 }> = ({ filterOutRxcui, indexMap }) => {
   const DrugInteractionDetailsValue: FC<{ value: any }> = (value: any) => {
-    const {
-      interactionTypeGroupIndex,
-      interactionTypeIndex,
-      interactionPairIndex,
-    } = indexMap;
-
     const interactionTypeGroup = value?.interactionTypeGroup;
     if (!interactionTypeGroup) {
       return <></>;
     }
     const interactionType =
-      interactionTypeGroup[interactionTypeGroupIndex]?.interactionType;
+      interactionTypeGroup[indexMap.interactionTypeGroupIndex]?.interactionType;
     if (!interactionType) {
       return <></>;
     }
     const interactionPair =
-      interactionType[interactionTypeIndex]?.interactionPair;
+      interactionType[indexMap.interactionTypeIndex]?.interactionPair;
     if (!interactionPair) {
       return <></>;
     }
     const interactionConcept =
-      interactionPair[interactionPairIndex]?.interactionConcept;
+      interactionPair[indexMap.interactionPairIndex]?.interactionConcept;
     if (!interactionConcept) {
       return <></>;
     }
@@ -43,10 +34,62 @@ export const DrugInteractionDetails: FC<{
             <></>
           ) : (
             <ul key={minConceptItem.rxcui}>
-              <li>source: {interactionTypeGroup[interactionTypeGroupIndex]?.sourceName}</li>
+              <li>
+                source:
+                {
+                  interactionTypeGroup[indexMap.interactionTypeGroupIndex]
+                    ?.sourceName
+                }
+              </li>
+              {!indexMap.duplicated ? (
+                <></>
+              ) : (
+                <li>
+                  source2:
+                  {
+                    interactionTypeGroup[
+                      indexMap.duplicated.interactionTypeGroupIndex
+                    ].sourceName
+                  }
+                </li>
+              )}
               <li>drug: {minConceptItem.name}</li>
-              <li>desc: {interactionPair[interactionPairIndex]?.description}</li>
-              <li>severity: {interactionPair[interactionPairIndex]?.severity}</li>
+              <li>
+                desc:
+                {interactionPair[indexMap.interactionPairIndex]?.description}
+              </li>
+              {!indexMap.duplicated ? (
+                <></>
+              ) : (
+                <li>
+                  desc2:
+                  {
+                    interactionTypeGroup[
+                      indexMap.duplicated.interactionTypeGroupIndex
+                    ].interactionType[indexMap.duplicated.interactionTypeIndex]
+                      .interactionPair[indexMap.duplicated.interactionPairIndex]
+                      .description
+                  }
+                </li>
+              )}
+              <li>
+                severity:
+                {interactionPair[indexMap.interactionPairIndex]?.severity}
+              </li>
+              {!indexMap.duplicated ? (
+                <></>
+              ) : (
+                <li>
+                  severity2:
+                  {
+                    interactionTypeGroup[
+                      indexMap.duplicated.interactionTypeGroupIndex
+                    ].interactionType[indexMap.duplicated.interactionTypeIndex]
+                      .interactionPair[indexMap.duplicated.interactionPairIndex]
+                      .severity
+                  }
+                </li>
+              )}
             </ul>
           )
         )}
