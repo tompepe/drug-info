@@ -1,0 +1,57 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define gradients -->
+  <defs>
+    <radialGradient id="centerGradient" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </radialGradient>
+    
+    <linearGradient id="interactionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F39C12;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer mandala ring -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#34495E" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Interaction lines radiating from center -->
+  <line x1="100" y1="100" x2="100" y2="20" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="159" y2="41" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="180" y2="100" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="159" y2="159" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="100" y2="180" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="41" y2="159" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="20" y2="100" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  <line x1="100" y1="100" x2="41" y2="41" stroke="#E74C3C" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Secondary interaction connections (8-point mandala) -->
+  <circle cx="100" cy="35" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="155" cy="55" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="175" cy="100" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="155" cy="155" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="100" cy="175" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="45" cy="155" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="25" cy="100" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="45" cy="45" r="12" fill="#27AE60" stroke="#229954" stroke-width="1.5" opacity="0.8"/>
+  
+  <!-- Central hub (main interaction point) -->
+  <circle cx="100" cy="100" r="20" fill="url(#centerGradient)" stroke="#2C3E50" stroke-width="2"/>
+  
+  <!-- Center detail (interaction symbol) -->
+  <g transform="translate(100, 100)">
+    <!-- Plus sign representing interaction -->
+    <line x1="-6" y1="0" x2="6" y2="0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-6" x2="0" y2="6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Warning indicators (small outer ring) -->
+  <circle cx="100" cy="28" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="163" cy="63" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="172" cy="100" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="163" cy="137" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="100" cy="172" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="37" cy="137" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="28" cy="100" r="4" fill="#E74C3C" opacity="0.7"/>
+  <circle cx="37" cy="63" r="4" fill="#E74C3C" opacity="0.7"/>
+</svg>

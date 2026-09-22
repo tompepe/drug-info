@@ -1,4 +1,4 @@
-![Drug Info Logo](logo.png)
+![Drug Info Logo](logo.svg)
 
 # drug-info
 Scripts and processes:
