@@ -1,3 +1,5 @@
+![Drug Info Logo](logo.png)
+
 # drug-info
 Scripts and processes:
 1. Update the board
